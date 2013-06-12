@@ -9,7 +9,7 @@ get '/' do
   haml :index
 end
 
-post '/' do
+post '/add' do
   @str = params[:str]
-  redirect '/'
+  haml :index
 end

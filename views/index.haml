@@ -6,10 +6,9 @@
     #main
       %h1 Textbox Test
       %div Let's Go!
-      - @str.each do |disp|
-        %li 
-          you type: #{@disp}
-      %form{:action=>"/", :method=>"post"}
+      %li
+        you type: #{@str}
+      %form{:action=>"/add", :method=>"post"}
         %input{:type=>"texfield", :name=>"str"}
         %input{:type=>"submit", :value=>"send"}
       %div= @message
