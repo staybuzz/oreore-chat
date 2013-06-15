@@ -12,8 +12,6 @@ require 'sqlite3'
 #  String :text
 #end
 
-Sequel::Model.plugin(:schema)
-
 Sequel.sqlite('db/chat.db')
 class Entries < Sequel::Model
   unless table_exists?
@@ -33,7 +31,6 @@ end
 
 post '/add' do
   @str = params[:str]
-  @entries = Entries.all
   Entries.insert(:text => @str)
   redirect '/'
 end
