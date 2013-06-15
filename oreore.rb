@@ -12,6 +12,8 @@ require 'sqlite3'
 #  String :text
 #end
 
+Sequel::Model.plugin(:schema)
+
 Sequel.sqlite('db/chat.db')
 class Entries < Sequel::Model
   unless table_exists?
