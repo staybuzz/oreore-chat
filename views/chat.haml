@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Chatroom
+  %body
+    #form
+      %form{:action=>"/add", :method=>"post"}
+        %input{:type=>"texfield", :name=>"str"}
+        %input{:type=>"submit", :value=>"send"}
+      %hr
+    #item 
+      - @entries.each do |item|
+        #{item.name} : #{item.text}
+        %hr
+

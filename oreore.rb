@@ -4,14 +4,6 @@ require 'haml'
 require 'sequel'
 require 'sqlite3'
 
-# DB = Sequel.sqlite('db/chat.db')
-
-#DB.create_table :items do
-#  primary_key :id
-#  String :name
-#  String :text
-#end
-
 Sequel::Model.plugin(:schema)
 
 Sequel.sqlite('db/chat.db')
@@ -28,11 +20,37 @@ end
 
 get '/' do
   @entries = Entries.all
-  haml :index
+  haml :login
+  #haml :index
+end
+
+post '/login' do
+  Entries.insert(:name => params[:hn])
+  redirect '/room'
+end
+
+get '/room' do
+  @entries = Entries.all
+  haml :chat
 end
 
 post '/add' do
-  @str = params[:str]
-  Entries.insert(:text => @str)
-  redirect '/'
+  @entries = Entries.all
+  Entries.insert(:text => params[:str])
+  redirect '/room'
 end
+
+__END__
+
+@@login
+!!!
+%html
+  %head
+    %title Chat Login
+  %body
+    #main
+      %h1 Welcome To My ChatRoom!!
+      %div Please Enter Your Name
+      %form{:action=>"/login", :method=>"post"}
+        %input{:type=>"texfield", :name=>"hn"}
+        %input{:type=>"submit", :value=>"send"}
