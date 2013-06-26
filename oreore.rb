@@ -20,6 +20,7 @@ end
 get '/' do
   @entries = Entries.all
   "hello :#{@entries.length}"
+  "#{@entries}"
 end
 
 get '/login' do
@@ -27,18 +28,18 @@ get '/login' do
 end
 
 post '/login' do
-  Entries.insert(:name => params[:hn])
-  redirect '/room'
+  Entries.insert(:name=>params[:hn], :text=>"#{params[:hn]} is entered!")
+  redirect "/room/:hn"
 end
 
-get '/room' do
+get '/room/:hn' do
   @entries = Entries.all
   haml :chat
 end
 
 post '/add' do
-  Entries.insert(:text => params[:str])
-  redirect '/room'
+  Entries.insert(:name=>params[:handlename], :text=>params[:str])
+  redirect '/room/:handlename'
 end
 
 __END__
