@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title Chat Login
+  %body
+    #main
+      %h1 Welcome To My ChatRoom!!
+      %div Please Enter Your Name
+      %form{:action=>"/login", :method=>"post"}
+        %input{:type=>"texfield", :name=>"hn"}
+        %input{:type=>"submit", :value=>"send"}

@@ -19,17 +19,12 @@ class Entries < Sequel::Model
 end
 
 get '/' do
-  @entries = Entries.all
-  "#{@entries}"
-end
-
-get '/login' do
   haml :login
 end
 
 post '/login' do
   Entries.insert(:name=>params[:hn], :text=>"#{params[:hn]} is entered!")
-  redirect "/room/:hn"
+  redirect "/room/#{params[:hn]}"
 end
 
 get '/room/:hn' do
@@ -37,24 +32,7 @@ get '/room/:hn' do
   haml :chat
 end
 
-post '/add' do
+post '/post' do
   Entries.insert(:name=>params[:hn], :text=>params[:str])
-  @entries = Entries.all
-  redirect '/room/:hn'
-  #haml :chat
+  redirect "room/#{params[:hn]}"
 end
-
-__END__
-
-@@login
-!!!
-%html
-  %head
-    %title Chat Login
-  %body
-    #main
-      %h1 Welcome To My ChatRoom!!
-      %div Please Enter Your Name
-      %form{:action=>"/login", :method=>"post"}
-        %input{:type=>"texfield", :name=>"hn"}
-        %input{:type=>"submit", :value=>"send"}

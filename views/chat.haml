@@ -4,7 +4,7 @@
     %title Chatroom
   %body
     #form
-      %form{:action=>"/add", :method=>"post"}
+      %form{:action=>"/post", :method=>"post"}
         %input{:type=>"texfield", :name=>"hn", :value=>"#{params[:hn]}"}
         %input{:type=>"texfield", :name=>"str"}
         %input{:type=>"submit", :value=>"send"}
