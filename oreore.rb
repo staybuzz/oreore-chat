@@ -40,8 +40,8 @@ end
 post '/add' do
   Entries.insert(:name=>params[:hn], :text=>params[:str])
   @entries = Entries.all
-  # redirect '/room/:hn'
-  haml :chat
+  redirect '/room/:hn'
+  #haml :chat
 end
 
 __END__
