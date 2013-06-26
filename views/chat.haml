@@ -5,11 +5,12 @@
   %body
     #form
       %form{:action=>"/add", :method=>"post"}
+        %input{:type=>"texfield", :name=>"hn", :value=>"#{params[:hn]}"}
         %input{:type=>"texfield", :name=>"str"}
         %input{:type=>"submit", :value=>"send"}
       %hr
     #item 
-      - @entries.each do |item|
+      - @entries.reverse.each do |item|
         #{item.name} : #{item.text}
         %hr
 

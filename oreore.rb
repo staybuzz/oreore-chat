@@ -1,3 +1,4 @@
+# encoding: utf-8
 require "sinatra"
 require 'sinatra/reloader'
 require 'haml'
@@ -19,7 +20,6 @@ end
 
 get '/' do
   @entries = Entries.all
-  "hello :#{@entries.length}"
   "#{@entries}"
 end
 
@@ -38,8 +38,10 @@ get '/room/:hn' do
 end
 
 post '/add' do
-  Entries.insert(:name=>params[:handlename], :text=>params[:str])
-  redirect '/room/:handlename'
+  Entries.insert(:name=>params[:hn], :text=>params[:str])
+  @entries = Entries.all
+  # redirect '/room/:hn'
+  haml :chat
 end
 
 __END__
