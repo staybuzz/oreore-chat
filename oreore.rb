@@ -2,7 +2,6 @@ require "sinatra"
 require 'sinatra/reloader'
 require 'haml'
 require 'sequel'
-require 'sqlite3'
 
 Sequel::Model.plugin(:schema)
 
@@ -20,8 +19,11 @@ end
 
 get '/' do
   @entries = Entries.all
+  "hello :#{@entries.length}"
+end
+
+get '/login' do
   haml :login
-  #haml :index
 end
 
 post '/login' do
@@ -35,7 +37,6 @@ get '/room' do
 end
 
 post '/add' do
-  @entries = Entries.all
   Entries.insert(:text => params[:str])
   redirect '/room'
 end
