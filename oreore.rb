@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 require 'haml'
 require 'sequel'
 
+set :haml, :escape_html => true
 Sequel::Model.plugin(:schema)
 
 Sequel.sqlite('db/chat.db')
