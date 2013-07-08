@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#form {
+  height: 10px; /*ヘッダーの高さ*/
+  left: 0;
+  margin: 0;
+  position: fixed;
+  _position: absolute;
+  top: 10px;
+  width: 100%;
+  z-index: 999;
+
+ }
+
+ #item {
+   margin: 50px 0 0 0; /* ヘッダーの高さ分をマージンで空けておく */
+   _overflow: auto;
+   padding: 0;
+ }
