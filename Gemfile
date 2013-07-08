@@ -7,3 +7,5 @@ gem "sinatra-contrib"
 gem "haml"
 gem "sequel"
 gem "sqlite3"
+gem "sass"
+

@@ -2,7 +2,9 @@
 %html
   %head
     %title Chatroom
+    %meta{:'http-equiv' => 'Content-Type', :content =>'text/html', :charset => 'utf-8'}
     %meta{'http-equiv' => 'Refresh', :content =>'5'}
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '../chat.css'}
   %body
     #form
       %form{:action=>"/post", :method=>"post"}
