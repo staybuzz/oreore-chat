@@ -3,6 +3,7 @@ require "sinatra"
 require 'sinatra/reloader'
 require 'haml'
 require 'sequel'
+require 'sass'
 
 set :haml, :escape_html => true
 Sequel::Model.plugin(:schema)
@@ -31,6 +32,10 @@ end
 get '/room/:hn' do
   @entries = Entries.all
   haml :chat
+end
+
+get '/chat.css' do
+  sass :chat
 end
 
 post '/post' do
